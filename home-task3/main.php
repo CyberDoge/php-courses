@@ -1,23 +1,23 @@
 <?php
-    function main(float $temperature, float $temperature_yesterday, float $temperature_tomorrow, bool $is_rained, string $ann_call)
+    function main(float $temperature, float $temperatureYesterday, float $temperatureTomorrow, bool $isRained, string $annCall)
     {
-        if ($temperature < 13 && $temperature_tomorrow > 12  &&  $temperature_yesterday  > 12) {
+        if ($temperature < 13 && $temperatureTomorrow > 12  &&  $temperatureYesterday  > 12) {
             //написать "одень" было в задание. grammar nazi не бейте меня
             echo "одень шапку";
         }
-        if ($temperature_tomorrow < 11 && $temperature_yesterday < 11) {
+        if ($temperatureTomorrow < 11 && $temperatureYesterday < 11) {
             echo "одень зимнюю шапку.";
         }
 
-        if ($ann_call === "холодно" || $ann_call === "заморозки" || $ann_call === "замерзла") {
+        if ($annCall === "холодно" || $annCall === "заморозки" || $annCall === "замерзла") {
             echo " ты хорошо оделся? ";
-            if ($is_rained) {
+            if ($isRained) {
                 echo " и возьми с собой зонтик";
-                if ($temperature >= $temperature_tomorrow + 3) {
+                if ($temperature >= $temperatureTomorrow + 3) {
                     echo " и шарф";
                 }
             }
-            if ($temperature_yesterday > $temperature && $temperature >= $temperature_tomorrow + 5) {
+            if ($temperatureYesterday > $temperature && $temperature >= $temperatureTomorrow + 5) {
                 echo "\n\033[01;31m ты не пройдешь! \033[0m";
             }
         }
