@@ -1,30 +1,43 @@
 <?php
-    function main(float $temperature, float $temperatureYesterday, float $temperatureTomorrow, bool $isRained, string $annCall)
-    {
-        if ($temperature < 13 && $temperatureTomorrow > 12  &&  $temperatureYesterday  > 12) {
-            //написать "одень" было в задание. grammar nazi не бейте меня
+function main(float $temperature, float $temperatureYesterday, float $temperatureTomorrow, bool $isRained, string $annCall)
+{
+    if ($temperature < 13) {
+        //написать "одень" было в задание. grammar nazi не бейте меня
+        if ($temperatureTomorrow > 11 && $temperatureYesterday > 11) {
             echo "одень шапку";
-        }
-        if ($temperatureTomorrow < 11 && $temperatureYesterday < 11) {
+        } elseif ($temperatureTomorrow < 11 && $temperatureYesterday < 11) {
             echo "одень зимнюю шапку.";
         }
+    }
 
-        if ($annCall === "холодно" || $annCall === "заморозки" || $annCall === "замерзла") {
-            echo " ты хорошо оделся? ";
-            if ($isRained) {
-                echo " и возьми с собой зонтик";
-                if ($temperature >= $temperatureTomorrow + 3) {
-                    echo " и шарф";
-                }
-            }
-            if ($temperatureYesterday > $temperature && $temperature >= $temperatureTomorrow + 5) {
-                echo "\n\033[01;31m ты не пройдешь! \033[0m";
-            }
+    if (checkIfTemperatureDecreased($temperature, $temperatureYesterday, $temperatureTomorrow) || checkAnnCall($annCall)) {
+        if (checkExtraCold($temperature, $temperatureTomorrow)) {
+            echo "\n\033[01;31m ты не пройдешь! \033[0m";
+            exit;
         }
-    }
-    function FunctionName(Type $var = null) : bool
-    {
-        # code...
-    }
+        echo " ты хорошо оделся? ";
 
-main(2, 5, -4, true, "холодно");
+        if (checkExtraCold($temperature, $temperatureTomorrow, 3)) {
+            echo " и шарф";
+        }
+
+    }
+    if ($isRained) {
+        echo " и возьми с собой зонтик";
+    }
+}
+
+function checkIfTemperatureDecreased(float $temperature, float $temperatureYesterday, float $temperatureTomorrow): bool
+{
+    return $temperatureYesterday > $temperature && $temperature > $temperatureTomorrow;
+}
+function checkAnnCall(string $annCall): bool
+{
+    return $annCall === "холодно" || $annCall === "заморозки" || $annCall === "замерзла";
+}
+function checkExtraCold(float $temperature, float $temperatureNextDay, int $different = 5): bool
+{
+    return $temperature >= $temperatureNextDay + $different;
+}
+
+main(11, 12, 8, false, "холодно");
