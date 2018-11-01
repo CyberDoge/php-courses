@@ -22,5 +22,9 @@
             }
         }
     }
+    function FunctionName(Type $var = null) : bool
+    {
+        # code...
+    }
 
 main(2, 5, -4, true, "холодно");
