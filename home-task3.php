@@ -1,4 +1,5 @@
 <?php
+
 function main(float $temperature, float $temperatureYesterday, float $temperatureTomorrow, bool $isRained, string $annCall)
 {
     if ($temperature < 13) {
@@ -20,7 +21,6 @@ function main(float $temperature, float $temperatureYesterday, float $temperatur
         if (checkExtraCold($temperature, $temperatureTomorrow, 3)) {
             echo " и шарф";
         }
-
     }
     if ($isRained) {
         echo " и возьми с собой зонтик";
