@@ -1,13 +1,22 @@
 <?php
-class Engine{
+class Engine
+{
     private $cylindersArray;
-    public function __construct(array $cylindersArray)
+
+    function __construct()
     {
-        $this->cylindersArray=$cylindersArray;
+        $this->cylindersArray = array(4);
+        for ($i = 0; $i < 4; $i++) {
+            $this->cylindersArray[$i] = new Cylinder($i);
+        }
+
     }
 
-    public function executeFirstTact(Driver $driver)
+    function startEngine()
     {
-        $driver.execute();
+        $this->cylindersArray[0] -> executeFirstStep();
+        $this->cylindersArray[1] -> executeSecondStep();
+        $this->cylindersArray[2] -> executeThirdStep();
+        $this->cylindersArray[3] -> executeFourthStep();
     }
 }

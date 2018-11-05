@@ -1,9 +1,12 @@
 <?php
-class Valve{
-    function startUpGas()
+class Valve
+{
+    public function startUpGas()
     {
+        echo "впускаем газ\n";
     }
-    function releaseGas(){
-
+    public function releaseGas()
+    {
+        echo "выпускаем выхлопные газы\n";
     }
 }

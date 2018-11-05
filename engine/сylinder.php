@@ -1,20 +1,56 @@
 <?php
-class Cylinder{
+class Cylinder
+{
     private $starterValve;
     private $disactivatorValve;
     private $lamp;
-    function executeFirstStep(){
-        $this->starterValve.startUpGas();
+    private $number;
+    public function __construct($number)
+    {
+        $this->number = $number;
+        $this->starterValve = new Valve();
+        $this->disactivatorValve = new Valve();
+        $this->lamp = new Lamp();
     }
 
-    function executeSecondStep(){
+    private function printInfo(){
+        echo "\n\033[31m cylinder with $this->number works:\033[0m \n";
     }
 
-    function executeThirdStep(){
-        $this->lamp.light();
+    public function executeFirstStep()
+    {
+        $this->printInfo();
+        echo "первый такт ";
+        $this->starterValve -> startUpGas();
+        echo "поршень движется вниз, образуется разрежение, засасывается свежий заряд ";
+        $this->executeSecondStep();
     }
 
-    function executeFourthStep(){
-        $this->disactivatorValve.releaseGas();
+    public function executeSecondStep()
+    {
+        $this->printInfo();
+        echo "второй такт ";
+        echo "Поршень движется к ВМТ, заряд сжимается поршнем до давления степени сжатия ";
+        $this->executeThirdStep();
     }
+
+    public function executeThirdStep()
+    {
+        $this->printInfo();
+        echo "третий такт ";
+        $this->lamp -> light();
+        echo "движение поршня в сторону нижней мёртвой точки под давлением горячих газов ";
+        $this->executeFourthStep();
+
+    }
+
+    public function executeFourthStep()
+    {
+        $this->printInfo();
+        echo "четвертый такт ";
+        $this->disactivatorValve -> releaseGas();
+        echo ("очистка цилиндра от отработавшей смеси. Выпускной клапан открыт, поршень движется в сторону верхней мёртвой точки, вытесняя выхлопные газы ");
+        $this->executeFirstStep();
+    }
+    
 }
