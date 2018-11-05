@@ -3,10 +3,10 @@ class Valve
 {
     public function startUpGas()
     {
-        echo "впускаем газ\n";
+        echo "\033[32mвпускаем газ\033[0m\n";
     }
     public function releaseGas()
     {
-        echo "выпускаем выхлопные газы\n";
+        echo "\033[31mвыпускаем выхлопные газы\033[0m\n";
     }
 }

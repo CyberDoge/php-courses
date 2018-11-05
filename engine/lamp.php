@@ -1,6 +1,6 @@
 <?php
 class Lamp{
     function light(){
-        echo "подается искра ";
+        echo "\033[1;33m подается искра \033[0m ";
     }
 }

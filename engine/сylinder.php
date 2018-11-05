@@ -14,7 +14,7 @@ class Cylinder
     }
 
     private function printInfo(){
-        echo "\n\033[31m cylinder with $this->number works:\033[0m \n";
+        echo "\n\033[34mcylinder with $this->number works:\033[0m \n";
     }
 
     public function executeFirstStep()
@@ -22,8 +22,7 @@ class Cylinder
         $this->printInfo();
         echo "первый такт ";
         $this->starterValve -> startUpGas();
-        echo "поршень движется вниз, образуется разрежение, засасывается свежий заряд ";
-        $this->executeSecondStep();
+        echo "поршень движется вниз, образуется разрежение, ";
     }
 
     public function executeSecondStep()
@@ -31,7 +30,6 @@ class Cylinder
         $this->printInfo();
         echo "второй такт ";
         echo "Поршень движется к ВМТ, заряд сжимается поршнем до давления степени сжатия ";
-        $this->executeThirdStep();
     }
 
     public function executeThirdStep()
@@ -40,7 +38,6 @@ class Cylinder
         echo "третий такт ";
         $this->lamp -> light();
         echo "движение поршня в сторону нижней мёртвой точки под давлением горячих газов ";
-        $this->executeFourthStep();
 
     }
 
@@ -50,7 +47,6 @@ class Cylinder
         echo "четвертый такт ";
         $this->disactivatorValve -> releaseGas();
         echo ("очистка цилиндра от отработавшей смеси. Выпускной клапан открыт, поршень движется в сторону верхней мёртвой точки, вытесняя выхлопные газы ");
-        $this->executeFirstStep();
     }
     
 }
